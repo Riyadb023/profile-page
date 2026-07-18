@@ -1,0 +1,83 @@
+/* ===== Header ===== */
+#header {
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 40px 0;
+}
+
+#name {
+  color: #c0392b;
+  font-size: 40px;
+}
+
+.tagline {
+  color: #dddddd;
+  font-size: 18px;
+}
+
+/* ===== Section containers (shared across About, Skills, Projects) ===== */
+.section-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-title {
+  color: #c0392b;
+  font-size: 28px;
+  text-align: center;
+}
+
+/* ===== About section ===== */
+#about {
+  background-color: #ffffff;
+}
+
+.about-text {
+  font-size: 16px;
+  color: #333333;
+  text-align: left;
+}
+
+/* ===== Skills section ===== */
+#skills {
+  background-color: #f4f4f4;
+}
+
+.skills-list {
+  list-style: none;
+  text-align: center;
+}
+
+.skill {
+  color: #333333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===== Projects section ===== */
+#projects {
+  background-color: #ffffff;
+}
+
+.projects-list {
+  list-style: none;
+  text-align: center;
+}
+
+.project {
+  color: #333333;
+  font-size: 16px;
+}
+
+/* ===== Footer ===== */
+#footer {
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-text {
+  color: #dddddd;
+  font-size: 14px;
+}
