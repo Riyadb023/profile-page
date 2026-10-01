@@ -1,8 +1,10 @@
-import { site, whatsappLink, DEFAULT_MESSAGE } from "../data/site";
-import { ArrowUp, GitHub, Instagram, WhatsApp } from "./Icons";
+import { hasWhatsApp, site, whatsappLink, DEFAULT_MESSAGE } from "../data/site";
+import { ArrowUp, GitHub, Instagram, Mail, WhatsApp } from "./Icons";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { github, instagram, email } = site.contact;
+  const external = { target: "_blank", rel: "noreferrer noopener" };
 
   return (
     <footer className="footer">
@@ -10,9 +12,10 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <span className="footer__logo">RIYAD</span>
-            <p>{site.tagline}</p>
+            <p>{site.role}</p>
             <p className="footer__pitch">
-              Websites, digital menus and WhatsApp ordering for restaurants and small businesses.
+              Websites and digital tools for businesses. {site.city},{" "}
+              {site.country}.
             </p>
           </div>
 
@@ -27,18 +30,30 @@ export default function Footer() {
             </div>
             <div className="footer__col">
               <span className="micro">Elsewhere</span>
-              <a href={site.contact.github} target="_blank" rel="noreferrer noopener">
-                <GitHub />
-                GitHub
-              </a>
-              <a href={site.contact.instagram} target="_blank" rel="noreferrer noopener">
-                <Instagram />
-                Instagram
-              </a>
-              <a href={whatsappLink(DEFAULT_MESSAGE)} target="_blank" rel="noreferrer noopener">
-                <WhatsApp />
-                WhatsApp
-              </a>
+              {github && (
+                <a href={github} {...external}>
+                  <GitHub />
+                  GitHub
+                </a>
+              )}
+              {instagram && (
+                <a href={instagram} {...external}>
+                  <Instagram />
+                  Instagram
+                </a>
+              )}
+              {hasWhatsApp && (
+                <a href={whatsappLink(DEFAULT_MESSAGE)} {...external}>
+                  <WhatsApp />
+                  WhatsApp
+                </a>
+              )}
+              {email && (
+                <a href={`mailto:${email}`}>
+                  <Mail />
+                  Email
+                </a>
+              )}
             </div>
           </nav>
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-/** Adds a solid background to the nav bar once the page is scrolled. */
+
 export function useScrolled(offset = 16) {
   const [scrolled, setScrolled] = useState(false);
 
@@ -14,7 +14,7 @@ export function useScrolled(offset = 16) {
   return scrolled;
 }
 
-/** Returns the id of the section currently occupying the viewport. */
+
 export function useActiveSection(ids) {
   const [active, setActive] = useState("");
 
@@ -44,7 +44,6 @@ export function useActiveSection(ids) {
   return active;
 }
 
-/** Locks page scrolling (mobile menu open). */
 export function useBodyLock(locked) {
   useEffect(() => {
     if (!locked) return undefined;

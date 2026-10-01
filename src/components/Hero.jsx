@@ -1,31 +1,19 @@
-import { projects } from "../data/projects";
-import { DEFAULT_MESSAGE, site, whatsappLink } from "../data/site";
-import { BrowserFrame, PhoneFrame } from "./Frames";
-import { mocks } from "./mocks";
+import { STATUS, building, selectedProjects } from "../data/projects";
+import { site } from "../data/site";
+import { ArrowDown, WhatsApp } from "./Icons";
 import Reveal from "./Reveal";
-import { ArrowDown, ArrowUpRight, WhatsApp } from "./Icons";
-
-const featured = projects[0];
-const Featured = mocks[featured.mock];
-
-/** Thin strip under the hero: what Riyad builds, each one jumping to services. */
-const bandItems = [
-  { label: "Restaurant websites", href: "#services" },
-  { label: "Digital menus", href: "#services" },
-  { label: "WhatsApp ordering", href: "#services" },
-  { label: "Business websites", href: "#services" },
-];
+import WaLink from "./WaLink";
 
 export default function Hero() {
   return (
     <>
-      <section className="hero" id="top">
+      <section className="hero" id="top" aria-label="Introduction">
         <div className="container hero__grid">
           <div className="hero__copy">
             <Reveal direction="none">
               <p className="hero__status">
                 <span className="dot-live" aria-hidden="true" />
-                {site.availability}
+                {site.status}
               </p>
             </Reveal>
 
@@ -42,54 +30,56 @@ export default function Hero() {
                 View my work
                 <ArrowDown />
               </a>
-              <a
-                className="btn btn--ghost"
-                href={whatsappLink(DEFAULT_MESSAGE)}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+              <WaLink className="btn btn--ghost">
                 <WhatsApp />
                 Let's talk
-              </a>
+              </WaLink>
             </Reveal>
 
             <Reveal delay={280} className="hero__meta">
-              <span>{site.city}, Algeria</span>
+              <span>
+                {site.city}, {site.country}
+              </span>
               <span className="hero__meta-sep" aria-hidden="true" />
-              <span>React · JavaScript · CSS</span>
+              <span>HTML · CSS · JavaScript · React</span>
               <span className="hero__meta-sep" aria-hidden="true" />
-              <span>Restaurants &amp; small businesses</span>
+              <span>Growing into full-stack</span>
             </Reveal>
           </div>
 
           <Reveal className="hero__visual" delay={160} direction="none">
-            <div className="hero__shot">
-              <BrowserFrame
-                address={featured.address}
-                theme={featured.theme}
-                label={`Screenshot of ${featured.name}, an interactive restaurant website with menu and WhatsApp ordering`}
-              >
-                <Featured.Site />
-              </BrowserFrame>
-
-              <div className="hero__phone">
-                <PhoneFrame
-                  theme={featured.theme}
-                  label={`${featured.name} on mobile — menu and order summary`}
-                >
-                  <Featured.Mobile />
-                </PhoneFrame>
-              </div>
-            </div>
-
-            <div className="hero__caption">
-              <span className="micro">
-                Featured — {featured.n} {featured.name} · {featured.category}
-              </span>
-              <a className="tlink" href={`#${featured.slug}`}>
-                Read the case
-                <ArrowUpRight />
-              </a>
+            <div className="hindex">
+              <p className="micro hindex__head">Projects</p>
+              <ul className="hindex__list">
+                {selectedProjects.map((p, i) => (
+                  <li key={p.slug}>
+                    <a className="hindex__row" href={`#${p.slug}`}>
+                      <span className="hindex__n">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="hindex__main">
+                        <span className="hindex__name">{p.name}</span>
+                        <span className="hindex__type">{p.type}</span>
+                      </span>
+                      <span className="hindex__status">{STATUS[p.status]}</span>
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a className="hindex__row" href="#work">
+                    <span className="hindex__n">
+                      <span className="dot-live" aria-hidden="true" />
+                    </span>
+                    <span className="hindex__main">
+                      <span className="hindex__name">{building.name}</span>
+                      <span className="hindex__type">{building.type}</span>
+                    </span>
+                    <span className="hindex__status">
+                      {STATUS[building.status]}
+                    </span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </Reveal>
         </div>
@@ -97,14 +87,13 @@ export default function Hero() {
 
       <div className="band">
         <div className="container band__inner">
-          {bandItems.map((item) => (
+          {site.band.map((item) => (
             <a className="band__item" key={item.label} href={item.href}>
               {item.label}
             </a>
           ))}
           <span className="band__item band__item--static">
-            <span className="dot-live" aria-hidden="true" />
-            Taking new projects
+            {site.city}, {site.country}
           </span>
         </div>
       </div>

@@ -12,7 +12,8 @@ export default function Approach() {
           </div>
           <div className="sec-head__aside">
             <p className="lede">
-              A simple process, so you always know what is happening and what comes next.
+              A simple process, so you always know what is happening and what
+              comes next.
             </p>
           </div>
         </Reveal>

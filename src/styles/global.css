@@ -1,10 +1,4 @@
-/* ==========================================================================
-   Riyad — portfolio
-   global.css — design tokens, reset, typography, shared primitives
-   ========================================================================== */
-
 :root {
-  /* Palette — paper, ink, one restrained accent (pine) */
   --paper: #f6f4f0;
   --paper-deep: #edeae3;
   --surface: #ffffff;
@@ -19,20 +13,22 @@
   --accent-tint: #e3ece7;
   --whatsapp: #1f8a5b;
 
-  /* Type */
-  --font-display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display:
+    "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: "Manrope", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+  --font-mono:
+    ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
 
-  /* Rhythm */
   --maxw: 1300px;
   --gut: clamp(20px, 4.4vw, 60px);
   --sec-y: clamp(84px, 9.5vw, 156px);
   --nav-h: 70px;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --shadow-frame: 0 1px 1px rgba(19, 20, 18, 0.04), 0 26px 54px -34px rgba(19, 20, 18, 0.42);
-  --shadow-lift: 0 2px 4px rgba(19, 20, 18, 0.05), 0 40px 70px -38px rgba(19, 20, 18, 0.5);
+  --shadow-frame:
+    0 1px 1px rgba(19, 20, 18, 0.04), 0 26px 54px -34px rgba(19, 20, 18, 0.42);
+  --shadow-lift:
+    0 2px 4px rgba(19, 20, 18, 0.05), 0 40px 70px -38px rgba(19, 20, 18, 0.5);
 }
 
 *,
@@ -120,8 +116,6 @@ p {
   border-radius: 2px;
 }
 
-/* --- Page texture ------------------------------------------------------- */
-
 .grain {
   position: fixed;
   inset: 0;
@@ -129,7 +123,7 @@ p {
   pointer-events: none;
   opacity: 0.32;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' fill='none' stroke='%23f6f4f0' stroke-opacity='.6' stroke-width='1.6'/%3E%3C/svg%3E");
 }
 
 .glow {
@@ -138,11 +132,13 @@ p {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(58% 42% at 88% -6%, rgba(46, 91, 78, 0.09), transparent 70%),
+    radial-gradient(
+      58% 42% at 88% -6%,
+      rgba(46, 91, 78, 0.09),
+      transparent 70%
+    ),
     radial-gradient(46% 38% at -8% 12%, rgba(19, 20, 18, 0.05), transparent 72%);
 }
-
-/* --- Layout ------------------------------------------------------------- */
 
 .container {
   width: 100%;
@@ -184,8 +180,6 @@ p {
   left: 12px;
   top: 12px;
 }
-
-/* --- Type primitives ---------------------------------------------------- */
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -279,8 +273,6 @@ p {
   }
 }
 
-/* --- Buttons ------------------------------------------------------------ */
-
 .btn {
   --btn-bg: var(--ink);
   --btn-fg: var(--paper);
@@ -298,8 +290,12 @@ p {
   letter-spacing: -0.012em;
   line-height: 1;
   cursor: pointer;
-  transition: background 0.32s var(--ease), color 0.32s var(--ease),
-    border-color 0.32s var(--ease), transform 0.32s var(--ease), box-shadow 0.32s var(--ease);
+  transition:
+    background 0.32s var(--ease),
+    color 0.32s var(--ease),
+    border-color 0.32s var(--ease),
+    transform 0.32s var(--ease),
+    box-shadow 0.32s var(--ease);
 }
 
 .btn svg {
@@ -369,8 +365,6 @@ p {
   justify-content: center;
 }
 
-/* --- Text link with arrow ---------------------------------------------- */
-
 .tlink {
   display: inline-flex;
   align-items: center;
@@ -380,7 +374,10 @@ p {
   letter-spacing: -0.012em;
   padding-bottom: 3px;
   border-bottom: 1px solid var(--line);
-  transition: border-color 0.3s var(--ease), color 0.3s var(--ease), gap 0.3s var(--ease);
+  transition:
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    gap 0.3s var(--ease);
 }
 
 .tlink svg {
@@ -397,11 +394,11 @@ p {
   transform: translate(3px, -3px);
 }
 
-/* --- Reveal on scroll --------------------------------------------------- */
-
 .reveal {
   opacity: 0;
-  transition: opacity 0.85s var(--ease) var(--d, 0ms), transform 0.85s var(--ease) var(--d, 0ms);
+  transition:
+    opacity 0.85s var(--ease) var(--d, 0ms),
+    transform 0.85s var(--ease) var(--d, 0ms);
   will-change: opacity, transform;
 }
 
@@ -417,8 +414,6 @@ p {
   opacity: 1;
   transform: none;
 }
-
-/* --- Misc --------------------------------------------------------------- */
 
 .rule {
   height: 1px;

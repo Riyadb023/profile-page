@@ -13,13 +13,13 @@ export default function App() {
     <>
       <div className="glow" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
-      <a className="skip" href="#work">
-        Skip to selected work
+      <a className="skip" href="#main">
+        Skip to content
       </a>
 
       <Nav />
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <Work />
         <Services />

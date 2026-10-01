@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { site, whatsappLink, DEFAULT_MESSAGE } from "../data/site";
+import { site } from "../data/site";
 import { useActiveSection, useBodyLock, useScrolled } from "../hooks/useNav";
 import { Close, GitHub, Instagram, Menu, WhatsApp } from "./Icons";
+import WaLink from "./WaLink";
 
-const SECTION_IDS = ["work", "services", "about", "contact"];
+const SECTION_IDS = ["top", "work", "about", "contact"];
 
 export default function Nav() {
   const scrolled = useScrolled(24);
@@ -40,7 +41,12 @@ export default function Nav() {
               <a
                 key={item.href}
                 href={item.href}
-                className={active === item.href.slice(1) ? "is-active" : undefined}
+                className={
+                  active === item.href.slice(1) ? "is-active" : undefined
+                }
+                aria-current={
+                  active === item.href.slice(1) ? "true" : undefined
+                }
               >
                 {item.label}
               </a>
@@ -48,15 +54,10 @@ export default function Nav() {
           </nav>
 
           <div className="nav__cta">
-            <a
-              className="btn btn--primary btn--sm"
-              href={whatsappLink(DEFAULT_MESSAGE)}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <WaLink className="btn btn--primary btn--sm">
               <WhatsApp />
               Let's talk
-            </a>
+            </WaLink>
             <button
               type="button"
               className="nav__burger"
@@ -70,7 +71,11 @@ export default function Nav() {
         </div>
       </header>
 
-      <div className={`nav__panel${open ? " is-open" : ""}`} aria-hidden={!open}>
+      <div
+        className={`nav__panel${open ? " is-open" : ""}`}
+        aria-hidden={!open}
+        inert={!open}
+      >
         <nav className="nav__panel-links" aria-label="Mobile">
           {site.nav.map((item, i) => (
             <a
@@ -87,38 +92,39 @@ export default function Nav() {
         </nav>
 
         <div className="nav__panel-foot">
-          <a
+          <WaLink
             className="btn btn--wa"
-            href={whatsappLink(DEFAULT_MESSAGE)}
-            target="_blank"
-            rel="noreferrer noopener"
             onClick={() => setOpen(false)}
             tabIndex={open ? 0 : -1}
           >
             <WhatsApp />
             Let's talk
-          </a>
+          </WaLink>
           <div className="nav__panel-social">
-            <a
-              href={site.contact.github}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="GitHub"
-              tabIndex={open ? 0 : -1}
-            >
-              <GitHub />
-            </a>
-            <a
-              href={site.contact.instagram}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Instagram"
-              tabIndex={open ? 0 : -1}
-            >
-              <Instagram />
-            </a>
+            {site.contact.github && (
+              <a
+                href={site.contact.github}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub"
+                tabIndex={open ? 0 : -1}
+              >
+                <GitHub />
+              </a>
+            )}
+            {site.contact.instagram && (
+              <a
+                href={site.contact.instagram}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Instagram"
+                tabIndex={open ? 0 : -1}
+              >
+                <Instagram />
+              </a>
+            )}
           </div>
-          <p className="micro">Frontend Developer · Algiers, Algeria</p>
+          <p className="micro">Web Developer · Algiers, Algeria</p>
         </div>
       </div>
     </>

@@ -14,12 +14,22 @@ export default function Reveal({
 }) {
   const [ref, inView] = useInView();
 
-  const classes = ["reveal", direction !== "none" ? `reveal--${direction}` : "", inView ? "is-in" : "", className]
+  const classes = [
+    "reveal",
+    direction !== "none" ? `reveal--${direction}` : "",
+    inView ? "is-in" : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <Tag ref={ref} className={classes} style={delay ? { "--d": `${delay}ms` } : undefined} {...rest}>
+    <Tag
+      ref={ref}
+      className={classes}
+      style={delay ? { "--d": `${delay}ms` } : undefined}
+      {...rest}
+    >
       {children}
     </Tag>
   );

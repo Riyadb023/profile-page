@@ -5,7 +5,6 @@ import App from "./App.jsx";
 
 import "./styles/global.css";
 import "./styles/sections.css";
-import "./styles/mocks.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

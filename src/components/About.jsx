@@ -1,17 +1,23 @@
 import { site } from "../data/site";
-import Reveal from "./Reveal";
 import { ArrowRight } from "./Icons";
+import Reveal from "./Reveal";
 
 export default function About() {
   return (
-    <section className="section section--rule about" id="about">
+    <section
+      className="section section--rule about"
+      id="about"
+      aria-labelledby="about-title"
+    >
       <div className="container about__grid">
         <div className="about__main">
           <Reveal direction="none">
             <span className="eyebrow">About</span>
           </Reveal>
           <Reveal delay={60} direction="none">
-            <h2 className="h2 about__title">A little about me</h2>
+            <h2 className="h2 about__title" id="about-title">
+              About me
+            </h2>
           </Reveal>
           <Reveal delay={110} direction="none">
             <p className="body-l about__intro">{site.about.intro}</p>
@@ -27,7 +33,7 @@ export default function About() {
           </Reveal>
         </div>
 
-        <aside className="about__side">
+        <aside className="about__side" aria-label="Quick facts">
           <Reveal className="portrait" direction="none">
             <span className="portrait__mark" aria-hidden="true">
               R
@@ -35,9 +41,9 @@ export default function About() {
             <div className="portrait__meta">
               <span className="micro">Riyad</span>
               <p>
-                Frontend Developer
+                Web Developer
                 <br />
-                {site.city}, Algeria
+                {site.city}, {site.country}
               </p>
             </div>
           </Reveal>
