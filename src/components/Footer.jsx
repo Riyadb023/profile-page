@@ -1,7 +1,9 @@
 import { hasWhatsApp, site, whatsappLink, DEFAULT_MESSAGE } from "../data/site";
 import { ArrowUp, GitHub, Instagram, Mail, WhatsApp } from "./Icons";
+import { useLanguage } from "../i18n";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
   const { github, instagram, email } = site.contact;
   const external = { target: "_blank", rel: "noreferrer noopener" };
@@ -14,22 +16,22 @@ export default function Footer() {
             <span className="footer__logo">RIYAD</span>
             <p>{site.role}</p>
             <p className="footer__pitch">
-              Websites and digital tools for businesses. {site.city},{" "}
+              {t.footer.pitch} {site.city},{" "}
               {site.country}.
             </p>
           </div>
 
           <nav className="footer__nav" aria-label="Footer">
             <div className="footer__col">
-              <span className="micro">Navigate</span>
-              {site.nav.map((item) => (
+              <span className="micro">{t.footer.navigate}</span>
+              {site.nav.map((item, i) => (
                 <a key={item.href} href={item.href}>
-                  {item.label}
+                  {[t.nav.home, t.nav.work, t.nav.about, t.nav.contact][i]}
                 </a>
               ))}
             </div>
             <div className="footer__col">
-              <span className="micro">Elsewhere</span>
+              <span className="micro">{t.footer.elsewhere}</span>
               {github && (
                 <a href={github} {...external}>
                   <GitHub />
@@ -58,7 +60,7 @@ export default function Footer() {
           </nav>
 
           <a className="footer__top-link" href="#top">
-            Back to top
+            {t.common.backToTop}
             <ArrowUp />
           </a>
         </div>
@@ -67,7 +69,7 @@ export default function Footer() {
           <span>
             © {year} {site.name}. All rights reserved.
           </span>
-          <span>Designed &amp; built in {site.city}.</span>
+          <span>{t.footer.designed} {site.city}.</span>
         </div>
       </div>
     </footer>

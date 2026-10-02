@@ -1,14 +1,16 @@
 import { site } from "../data/site";
 import Reveal from "./Reveal";
+import { useLanguage } from "../i18n";
 
 export default function Tools() {
+  const { t } = useLanguage();
   return (
     <section className="section tools" id="tools" aria-labelledby="tools-title">
       <div className="container tools__inner">
         <Reveal direction="none">
-          <span className="eyebrow">Tech stack</span>
+          <span className="eyebrow">{t.tools.eyebrow}</span>
           <h2 className="h3 tools__title" id="tools-title">
-            Tools I work with
+            {t.tools.title}
           </h2>
         </Reveal>
 
@@ -29,8 +31,7 @@ export default function Tools() {
 
         <Reveal className="tools__note" delay={120} direction="none">
           <p>
-            Frontend is where I'm strongest. Backend and database work is newer
-            for me, and I'm building it up through real projects.
+            {t.tools.note}
           </p>
         </Reveal>
       </div>

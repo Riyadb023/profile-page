@@ -28,6 +28,7 @@ export const projects = [
     status: "concept",
     blurb:
       "A fictional gym created as a concept, to explore what a modern gym website could look like.",
+    fr: { type: "Concept de site pour salle de sport", blurb: "Une salle de sport fictive créée comme concept pour explorer ce qu’un site moderne de fitness peut proposer." },
     stack: [], // TODO: add the technologies used
     links: { live: null, github: null }, // TODO
   },
@@ -55,6 +56,9 @@ export const projects = [
       "Multiple languages",
     ],
     stack: ["HTML", "CSS", "JavaScript", "Vite"],
+    fr: { type: "Site web de restaurant", blurb: "Un site pour pizzeria construit de ma propre initiative, avec menu, panier et commande WhatsApp." },
+    // French copy for the project detail modal.
+    frDetail: { what: "Un site restaurant qui centralise le menu et la commande dans une expérience mobile simple, sans backend.", problem: "Les menus à emporter sont souvent dispersés dans les photos et les réseaux sociaux. Le site donne aux clients un seul endroit pour parcourir le menu et envoyer leur commande.", built: ["Menu piloté par un fichier JSON avec support d’un menu Google Sheet (CSV)", "Panier multi-articles avec commande via WhatsApp", "Personnalisation du prix selon la pâte", "Badge d’horaires et bouton WhatsApp flottant"], planned: ["Formulaire de contact", "SEO local", "Commande à table via QR code", "Multilingue"] },
     links: {
       live: "https://pizza-ora.vercel.app/",
       github: "https://github.com/Riyadb023/Pizza-Ora",
@@ -68,6 +72,7 @@ export const projects = [
     status: "concept",
     blurb:
       "A restaurant website concept I built on my own initiative. It was not commissioned by the restaurant.",
+    fr: { type: "Concept de site pour restaurant", blurb: "Un concept de site restaurant réalisé de ma propre initiative. Il n’a pas été commandé par le restaurant." },
     stack: [],
     links: {
       live: "https://intikdz.vercel.app/",
@@ -138,6 +143,7 @@ export const building = {
   status: "building",
   blurb:
     "A gym-focused web application. Still in progress; details and a demo will be added when it's ready.",
+  fr: { type: "Application web", blurb: "Une application web dédiée aux salles de sport. Le projet est encore en cours de développement." },
   links: { live: null, github: null },
 };
 

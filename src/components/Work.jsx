@@ -10,8 +10,10 @@ import { site } from "../data/site";
 import ProjectCard from "./ProjectCard";
 import ProjectDetail from "./ProjectDetail";
 import Reveal from "./Reveal";
+import { useLanguage } from "../i18n";
 
 export default function Work() {
+  const { t } = useLanguage();
   const [active, setActive] = useState(null);
   const close = useCallback(() => setActive(null), []);
 
@@ -24,16 +26,14 @@ export default function Work() {
       <div className="container">
         <Reveal className="sec-head" direction="none">
           <div className="sec-head__title">
-            <span className="eyebrow">Work</span>
+            <span className="eyebrow">{t.work.eyebrow}</span>
             <h2 className="h2" id="work-title">
-              Selected work
+              {t.work.title}
             </h2>
           </div>
           <div className="sec-head__aside">
             <p className="lede">
-              Projects I built on my own initiative. None of these were
-              commissioned. They show how I approach a business's website, and
-              each one is labelled.
+              {t.work.intro}
             </p>
           </div>
         </Reveal>
@@ -50,9 +50,9 @@ export default function Work() {
         </div>
 
         <Reveal className="work__sub" direction="none">
-          <h3 className="h3">Development projects</h3>
+          <h3 className="h3">{t.work.devTitle}</h3>
           <p className="micro">
-            Smaller personal projects, built to practise and learn.
+            {t.work.devIntro}
           </p>
         </Reveal>
 
@@ -70,15 +70,15 @@ export default function Work() {
 
         <Reveal className="building" direction="none">
           <div className="building__main">
-            <span className="eyebrow">Currently building</span>
-            <h3 className="h3 building__title">{site.building.title}</h3>
-            <p className="building__text">{site.building.text}</p>
+            <span className="eyebrow">{t.work.buildingEyebrow}</span>
+            <h3 className="h3 building__title">{t.work.buildingTitle}</h3>
+            <p className="building__text">{t.work.buildingText}</p>
           </div>
           <div className="building__item">
             <div className="wcard__top">
               <h4 className="wcard__name">{building.name}</h4>
               <span className={`badge badge--${building.status}`}>
-                {STATUS[building.status]}
+                {t.status[building.status]}
               </span>
             </div>
             <p className="wcard__type">{building.type}</p>

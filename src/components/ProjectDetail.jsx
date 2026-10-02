@@ -4,6 +4,7 @@ import { STATUS } from "../data/projects";
 import { useBodyLock } from "../hooks/useNav";
 import { ArrowUpRight, Close, GitHub } from "./Icons";
 import ProjectVisual from "./ProjectVisual";
+import { useLanguage } from "../i18n";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -14,6 +15,7 @@ const FOCUSABLE =
  * Sections without data are simply not rendered.
  */
 export default function ProjectDetail({ project, onClose }) {
+  const { t, lang } = useLanguage();
   const [rendered, setRendered] = useState(null);
   const [shown, setShown] = useState(false);
   const dialogRef = useRef(null);
@@ -65,6 +67,7 @@ export default function ProjectDetail({ project, onClose }) {
 
   if (!rendered) return null;
   const p = rendered;
+  const copy = lang === "fr" && p.fr ? { ...p, ...p.fr, ...(p.frDetail || {}) } : p;
 
   return (
     <div
@@ -81,17 +84,17 @@ export default function ProjectDetail({ project, onClose }) {
         <div className="preview__bar">
           <div>
             <h3 className="h3 preview__name" id="preview-title">
-              {p.name}
+              {copy.name}
             </h3>
             <p className="micro preview__cat">
-              {p.type} · {STATUS[p.status]}
+              {copy.type} · {t.status[p.status]}
             </p>
           </div>
           <button
             type="button"
             className="preview__close"
             onClick={onClose}
-            aria-label="Close project details"
+            aria-label={t.detail.close}
           >
             <Close />
           </button>
@@ -101,35 +104,35 @@ export default function ProjectDetail({ project, onClose }) {
           <ProjectVisual project={p} eager />
 
           <div className="preview__cols">
-            {p.what && (
+            {copy.what && (
               <section>
-                <h4 className="micro case__label">What it is</h4>
-                <p>{p.what}</p>
+                <h4 className="micro case__label">{t.detail.what}</h4>
+                <p>{copy.what}</p>
               </section>
             )}
-            {p.problem && (
+            {copy.problem && (
               <section>
-                <h4 className="micro case__label">What problem it addresses</h4>
-                <p>{p.problem}</p>
+                <h4 className="micro case__label">{t.detail.problem}</h4>
+                <p>{copy.problem}</p>
               </section>
             )}
-            {p.built?.length > 0 && (
+            {copy.built?.length > 0 && (
               <section>
-                <h4 className="micro case__label">What I built</h4>
+                <h4 className="micro case__label">{t.detail.built}</h4>
                 <ul className="preview__list">
-                  {p.built.map((item) => (
+                  {copy.built.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </section>
             )}
-            {p.planned?.length > 0 && (
+            {copy.planned?.length > 0 && (
               <section>
                 <h4 className="micro case__label">
-                  Not built yet (ideas only)
+                  {t.detail.planned}
                 </h4>
                 <ul className="preview__list preview__list--muted">
-                  {p.planned.map((item) => (
+                  {copy.planned.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
@@ -139,24 +142,24 @@ export default function ProjectDetail({ project, onClose }) {
 
           <div className="preview__foot">
             {p.stack.length > 0 && (
-              <p className="micro">Built with {p.stack.join(" · ")}</p>
+              <p className="micro">{t.detail.builtWith} {p.stack.join(" · ")}</p>
             )}
             <div className="preview__actions">
-              {p.links.live && (
+              {copy.links.live && (
                 <a
                   className="btn btn--primary btn--sm"
-                  href={p.links.live}
+                  href={copy.links.live}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  Live Demo
+                  {t.common.liveDemo}
                   <ArrowUpRight />
                 </a>
               )}
-              {p.links.github && (
+              {copy.links.github && (
                 <a
                   className="btn btn--ghost btn--sm"
-                  href={p.links.github}
+                  href={copy.links.github}
                   target="_blank"
                   rel="noreferrer noopener"
                 >

@@ -473,3 +473,10 @@ p {
     transform: none !important;
   }
 }
+
+
+.lang-switch { display: inline-flex; align-items: center; gap: 5px; margin-right: 10px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; }
+.lang-switch button { appearance: none; border: 0; background: transparent; color: inherit; opacity: .45; padding: 4px 2px; cursor: pointer; font: inherit; letter-spacing: inherit; }
+.lang-switch button.is-active { opacity: 1; }
+.lang-switch button:hover, .lang-switch button:focus-visible { opacity: 1; }
+@media (max-width: 900px) { .lang-switch { margin-right: 4px; } }

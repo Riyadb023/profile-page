@@ -4,13 +4,17 @@ import { site } from "../data/site";
 import { useActiveSection, useBodyLock, useScrolled } from "../hooks/useNav";
 import { Close, GitHub, Instagram, Menu, WhatsApp } from "./Icons";
 import WaLink from "./WaLink";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "../i18n";
 
 const SECTION_IDS = ["top", "work", "about", "contact"];
 
 export default function Nav() {
+  const { t } = useLanguage();
   const scrolled = useScrolled(24);
   const active = useActiveSection(SECTION_IDS);
   const [open, setOpen] = useState(false);
+  const labels = [t.nav.home, t.nav.work, t.nav.about, t.nav.contact];
 
   useBodyLock(open);
 
@@ -37,7 +41,7 @@ export default function Nav() {
           </a>
 
           <nav className="nav__links" aria-label="Primary">
-            {site.nav.map((item) => (
+            {site.nav.map((item, i) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -48,15 +52,16 @@ export default function Nav() {
                   active === item.href.slice(1) ? "true" : undefined
                 }
               >
-                {item.label}
+                {labels[i] ?? item.label}
               </a>
             ))}
           </nav>
 
           <div className="nav__cta">
+            <LanguageSwitcher />
             <WaLink className="btn btn--primary btn--sm">
               <WhatsApp />
-              Let's talk
+              {t.common.talk}
             </WaLink>
             <button
               type="button"
@@ -86,7 +91,7 @@ export default function Nav() {
               tabIndex={open ? 0 : -1}
             >
               <span className="micro">{`0${i + 1}`}</span>
-              {item.label}
+              {labels[i] ?? item.label}
             </a>
           ))}
         </nav>
@@ -98,7 +103,7 @@ export default function Nav() {
             tabIndex={open ? 0 : -1}
           >
             <WhatsApp />
-            Let's talk
+            {t.common.talk}
           </WaLink>
           <div className="nav__panel-social">
             {site.contact.github && (
@@ -124,7 +129,7 @@ export default function Nav() {
               </a>
             )}
           </div>
-          <p className="micro">Web Developer · Algiers, Algeria</p>
+          <p className="micro">Full-Stack Web Developer · Algiers, Algeria</p>
         </div>
       </div>
     </>

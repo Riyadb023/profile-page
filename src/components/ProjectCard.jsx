@@ -2,6 +2,7 @@ import { STATUS, hasDetail } from "../data/projects";
 import { ArrowUpRight, GitHub } from "./Icons";
 import ProjectVisual from "./ProjectVisual";
 import Reveal from "./Reveal";
+import { useLanguage } from "../i18n";
 
 /** One project card. `compact` drops the large visual (used for smaller projects). */
 export default function ProjectCard({
@@ -11,6 +12,8 @@ export default function ProjectCard({
   onOpen,
 }) {
   const { live, github } = project.links;
+  const { t, lang } = useLanguage();
+  const copy = lang === "fr" && project.fr ? project.fr : project;
   const canOpen = hasDetail(project);
 
   return (
@@ -27,11 +30,11 @@ export default function ProjectCard({
         <div className="wcard__top">
           <h3 className="wcard__name">{project.name}</h3>
           <span className={`badge badge--${project.status}`}>
-            {STATUS[project.status]}
+            {t.status[project.status]}
           </span>
         </div>
-        <p className="wcard__type">{project.type}</p>
-        {project.blurb && <p className="wcard__blurb">{project.blurb}</p>}
+        <p className="wcard__type">{copy.type}</p>
+        {project.blurb && <p className="wcard__blurb">{copy.blurb}</p>}
         {project.stack.length > 0 && (
           <p className="wcard__stack">{project.stack.join(" · ")}</p>
         )}
@@ -45,7 +48,7 @@ export default function ProjectCard({
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                Live Demo
+                {t.common.liveDemo}
                 <ArrowUpRight />
               </a>
             )}
@@ -67,7 +70,7 @@ export default function ProjectCard({
                 className="tlink tlink--btn"
                 onClick={() => onOpen(project)}
               >
-                Details
+                {t.common.details}
                 <ArrowUpRight />
               </button>
             )}
